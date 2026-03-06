@@ -1,175 +1,386 @@
-🎬 Elevideo
+🎬 Elevideo API - Plataforma VideoBoost
+🚀 Índice
 
-Elevideo es una aplicación web responsiva diseñada para convertir videos horizontales en formato vertical (9:16), optimizados para TikTok y YouTube Shorts, permitiendo a startups, pymes y creadores generar contenido de marketing de forma rápida y eficiente.
+✨ Título e Imagen de Portada
 
-🎯 El Problema
+🏅 Badges
 
-Hoy, la atención está en los formatos cortos y verticales.
-Sin embargo, crear este contenido requiere tiempo, herramientas complejas y procesos que no forman parte del core del negocio.
+💾 Descripción del Proyecto
 
-Muchas empresas ya tienen videos largos…
-pero no los reutilizan.
+🟢 Estado del Proyecto
 
-💡 La Solución
+💡 Características Implementadas
 
-Elevideo automatiza la conversión de videos horizontales a verticales, permitiendo:
+🔐 Sistema de Autenticación
 
-Reutilizar contenido existente
+☁️ Gestión de Videos y Multimedia
 
-Generar shorts en minutos
+📧 Sistema de Emails
 
-Mantener presencia constante en redes
+📚 Documentación de la API
 
-Enfocarse en vender, no en editar
+🛠️ Acceso y Ejecución del Proyecto
 
-✨ Qué hace Elevideo (MVP)
+☁️ Deploy en la Nube
 
-📤 Subida rápida de videos
+💻 Tecnologías Utilizadas
 
-⚙️ Procesamiento automático a formato vertical (9:16)
+👥 Personas Contribuyentes
 
-🎯 Editor inteligente (auto-center / crop)
+👨‍💻 Desarrollador del Proyecto
 
-👀 Vista previa inmediata
+📄 Licencia
 
-⬇️ Descarga lista para publicar
+📚 Referencias y Agradecimientos
 
-📱 Experiencia totalmente responsiva
+✨ Elevideo API
+Plataforma Backend para VideoBoost
 
+Elevideo es una API RESTful moderna diseñada para gestionar usuarios, autenticación segura y almacenamiento de contenido multimedia para la plataforma VideoBoost.
 
-🧠 Para quién es
+El sistema permite:
 
-Startups
+Registro y autenticación segura de usuarios
 
-Pymes
+Gestión de cuentas
 
-Emprendedores
+Cambio seguro de contraseña
 
-Equipos de marketing
+Manejo de videos y archivos multimedia
 
-Creadores de contenido
+Integración con servicios cloud
 
+Documentación automática de la API
 
-🏗️ Arquitectura General
+La arquitectura está basada en Spring Boot siguiendo buenas prácticas de arquitectura limpia y seguridad moderna.
 
-Monorepo con separación clara por responsabilidades:
+🏅 Badges
 
-Frontend: React + Vite + TypeScript
+Estado: En Desarrollo Activo
+Spring Boot 3
+Java 17
+PostgreSQL
+JWT Authentication
+Licencia MIT
 
-Backend: Spring Boot (Java)
+💾 Descripción del Proyecto
 
-Database: PostgreSQL
+Elevideo es el backend de la plataforma VideoBoost, un sistema pensado para gestionar contenido audiovisual y usuarios en un entorno moderno y escalable.
 
-Procesamiento de video: Servicio backend (FFmpeg o mock en MVP)
+La API permite:
 
-Elevideo/
-├── frontend/     # React + Vite
-├── backend/      # Spring Boot
-├── database/     # PostgreSQL (Docker)
-├── docs/         # Arquitectura y contrato API
-└── README.md
+autenticación mediante JWT
 
-👥 Equipos Involucrados
+gestión segura de usuarios
 
-Backend Team
+integración con Cloudinary para almacenamiento multimedia
 
-API REST
+envío de correos mediante Resend
 
-Persistencia
+persistencia de datos con PostgreSQL
 
-Procesamiento de video
+documentación interactiva mediante Swagger
 
-Frontend Team
+El proyecto está diseñado para ser desplegado en la nube utilizando Render.
 
-UI/UX
+🟢 Estado del Proyecto
 
-Editor vertical
+🚧 Proyecto en Desarrollo Activo
 
-Integración con API
+Actualmente el sistema cuenta con:
 
-Product / PM
+Autenticación completa
 
-Scope
+Gestión de usuarios
 
-Priorización
+Cambio de contraseña
 
-QA y entrega MVP
+Integración con servicios externos
 
-📅 Cronograma
+Deploy funcional en la nube
 
-Duración total: 4 semanas
+Se planean futuras mejoras como:
 
-Week 1: Fundaciones, arquitectura y contratos
+gestión completa de videos
 
-Week 2: Flujo core de video (upload → estado)
+panel administrativo
 
-Week 3: Editor vertical y procesamiento
+sistema de roles y permisos
 
-Week 4: UX, responsive, QA y entrega
+analytics de contenido
 
-Inicio del Sistema con Bash:
-Elevideo App
-frontend:npm run dev
-backend:./mvnw spring-boot:run
-postgress:
-clave:americas
-puerto:5432
+💡 Características Implementadas
+👤 Gestión de Usuarios
+Registro de usuario
+POST /api/v1/auth/register
 
-El detalle de tareas se gestiona en GitHub Projects.
 
-📌 Gestión del Proyecto
+Permite registrar nuevos usuarios en la plataforma.
 
-GitHub Projects (v2)
+Las contraseñas se almacenan utilizando BCrypt hashing.
 
-Metodología: Kanban + Sprints semanales
+Inicio de sesión
+POST /api/v1/auth/login
 
-1 Issue = 1 tarea concreta
 
-Pull Request obligatorio para main
+Autentica a un usuario y devuelve un token JWT.
 
-Estados del board:
+El token se debe enviar en el header:
 
-Backlog
+Authorization: Bearer {token}
 
-Ready
+Cambio de contraseña
+PATCH /api/users/{id}/password
 
-In Progress
 
-In Review
+Permite cambiar la contraseña de un usuario autenticado.
 
-Blocked
+Requiere:
 
-Done
+contraseña actual
 
-📄 Documentación
+nueva contraseña
 
-docs/architecture.md → Arquitectura técnica
+🔐 Sistema de Autenticación
 
-docs/api-contract.md → Contrato API (request/response)
+La API utiliza JWT (JSON Web Tokens) para autenticación sin estado.
 
-🎯 Criterio de Éxito del MVP
+Flujo de autenticación:
 
-Un usuario puede subir un video horizontal
+1️⃣ El usuario inicia sesión
+2️⃣ El servidor genera un JWT
+3️⃣ El cliente envía el token en cada request protegido
 
-Convertirlo a formato vertical
+Ejemplo de header:
 
-Visualizar una preview
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9...
 
-Descargar el resultado final
 
-Todo el flujo funciona en menos de 3 pasos principales
+Ventajas:
 
-🔮 Futuro (Post-MVP)
+escalabilidad
 
-Autenticación de usuarios
+seguridad
 
-Templates por red social
+autenticación stateless
 
-Subtítulos automáticos
+☁️ Gestión de Multimedia
 
-Branding (logos, colores)
+Elevideo integra Cloudinary para almacenamiento y gestión de archivos multimedia.
 
-Publicación directa a redes sociales
+Funciones:
 
-Elevideo
-Transforma tus videos. Eleva tu alcance.
+almacenamiento de videos
+
+almacenamiento de imágenes
+
+optimización automática
+
+distribución mediante CDN
+
+📧 Sistema de Emails
+
+La plataforma utiliza Resend para el envío de correos transaccionales.
+
+Casos de uso:
+
+verificación de email
+
+recuperación de contraseña
+
+notificaciones del sistema
+
+📚 Documentación de la API
+
+La API incluye documentación interactiva con Swagger.
+
+Permite:
+
+explorar endpoints
+
+probar requests
+
+visualizar modelos de datos
+
+autenticarse directamente desde la UI
+
+Acceso:
+
+http://localhost:8081/swagger-ui.html
+
+
+o en producción:
+
+https://s02-26-e16-wad.onrender.com/swagger-ui.html
+
+🛠️ Acceso y Ejecución del Proyecto
+🔧 Requisitos Previos
+
+Java 17+
+
+Maven 3+
+
+PostgreSQL
+
+IDE (IntelliJ recomendado)
+
+Clonar el repositorio
+git clone https://github.com/No-Country-simulation/S02-26-E16-WAD
+cd elevideo-backend
+
+Configurar base de datos
+
+Crear base de datos PostgreSQL:
+
+CREATE DATABASE elevideo_db;
+
+
+Configurar en application.yml o variables de entorno.
+
+Ejecutar la aplicación
+
+Primero instalar dependencias:
+
+mvn clean install
+
+
+Luego ejecutar:
+
+mvn spring-boot:run
+
+
+La API estará disponible en:
+
+http://localhost:8081
+
+☁️ Deploy en la Nube
+
+La aplicación está desplegada en Render.
+
+Infraestructura utilizada:
+
+Web Service (Spring Boot API)
+
+PostgreSQL Database
+
+URL de producción:
+
+https://s02-26-e16-wad.onrender.com
+
+💻 Tecnologías Utilizadas
+Backend
+
+Java 17
+
+Spring Boot 3
+
+Spring Security
+
+Spring Data JPA
+
+Hibernate
+
+Seguridad
+
+JWT Authentication
+
+BCrypt Password Encoding
+
+Base de Datos
+
+PostgreSQL
+
+Servicios Cloud
+
+Cloudinary → almacenamiento multimedia
+
+Resend → envío de correos
+
+Documentación
+
+SpringDoc OpenAPI
+
+Swagger UI
+
+Deploy
+
+Render
+
+Herramientas
+
+Maven
+
+Lombok
+
+Postman
+
+Swagger
+
+👥 Personas Contribuyentes
+
+Actualmente el proyecto está abierto a contribuciones.
+
+Si deseas colaborar:
+
+crear nuevas funcionalidades
+
+mejorar documentación
+
+optimizar seguridad
+
+añadir testing
+
+¡Las contribuciones son bienvenidas!
+
+👨‍💻 Desarrolladores del Proyecto
+
+Lisandro
+Jhorman
+David
+Edgar
+Eduin
+
+
+
+
+GitHub:
+
+https://github.com/No-Country-simulation/S02-26-E16-WAD
+
+
+Proyecto desarrollado como parte de prácticas avanzadas en:
+
+Arquitectura de APIs
+
+Seguridad con Spring
+
+Integración con servicios cloud
+
+Deploy en la nube
+
+📄 Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT.
+
+Puedes usarlo, modificarlo y distribuirlo libremente.
+
+Consulta el archivo:
+
+LICENSE
+
+
+para más información.
+
+📚 Referencias y Agradecimientos
+
+Formación en backend proporcionada por Alura Latam
+
+Inspiración en buenas prácticas de arquitectura del proyecto Voll.med
+
+Documentación generada con SpringDoc OpenAPI
+
+Integraciones con Cloudinary y Resend
+
+🚀 Elevideo — VideoBoost Backend
+
+Plataforma backend moderna para la gestión de contenido audiovisual, usuarios y autenticación segura en la nube.
