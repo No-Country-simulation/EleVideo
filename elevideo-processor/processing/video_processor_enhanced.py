@@ -49,9 +49,9 @@ def process_video_enhanced(
         logger.info("Video vertical, dimensiones distintas — re-escalando")
         return _rescale_vertical(input_path, config, encoder)
 
-    # Más estrecho que el crop deseado
-    if width <= crop_w:
-        logger.warning("Video más estrecho que crop (%dx%d <= %d) — modo full", width, height, crop_w)
+    # Video más pequeño que el crop deseado en cualquier dimensión → modo full
+    if width <= crop_w or height <= crop_h:
+        logger.warning("Video más pequeño que crop (%dx%d vs %dx%d) — modo full", width, height, crop_w, crop_h)
         return _process_full(input_path, config, encoder)
 
     # Video horizontal — modo full o smart crop
@@ -134,8 +134,8 @@ def _process_smart_crop(
     logger.info("Detección | frames_analizados=%d | con_cara=%d | reliability=%.1f%%",
                 total_analyzed, faces_detected, reliability * 100)
 
-    if reliability < _FACE_RELIABILITY_THRESHOLD:
-        logger.warning("Sin detecciones de cara — cambiando a modo full")
+    if reliability <= _FACE_RELIABILITY_THRESHOLD or not positions:
+        logger.warning("Sin detecciones de cara o posiciones vacías — cambiando a modo full")
         return _process_full(input_path, config, encoder)
 
     output_path = _output_path(input_path, config.CONVERSION_MODE["mode"])
