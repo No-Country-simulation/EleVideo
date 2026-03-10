@@ -1,9 +1,6 @@
 <div align="center">
 
-<!-- Reemplaza la siguiente línea con tu logo/banner una vez lo tengas -->
-<!-- <img src="./assets/banner.png" alt="Elevideo Banner" width="100%" /> -->
-
-# Elevideo
+<img src="https://github.com/user-attachments/assets/4602601c-e3ed-4c0d-b847-24fa5a05d5d6" alt="Elevideo Banner" width="30%" />
 
 **Plataforma inteligente de procesamiento de video**  
 Convierte videos horizontales a formato vertical 9:16 con detección de rostros, reencuadre inteligente y múltiples modos de procesamiento para TikTok, Instagram Reels y YouTube Shorts.
