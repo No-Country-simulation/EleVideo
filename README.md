@@ -90,7 +90,7 @@ Elevideo está compuesto por tres servicios independientes que se comunican entr
 3. **Python** descarga el video, aplica detección de rostros con MediaPipe, estabilización cinematográfica y encoding con FFmpeg
 4. El resultado se sube a Cloudinary y Python notifica a Spring Boot vía **webhook**
 5. Spring Boot actualiza el job y guarda la rendition con las URLs de descarga
-6. El usuario recibe un **email de notificación** y puede ver el resultado en su galería
+6. El usuario recibe un notificacion en su navegagador y puede ver el resultado en su galería de videos procesados
 
 ---
 
