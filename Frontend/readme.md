@@ -1,61 +1,67 @@
-# Welcome to EleVideo
+# EleVideo Frontend
 
+Frontend del proyecto **EleVideo**, desarrollado en **React.js** con **JavaScript**, utilizando **CRACO** y **Tailwind CSS**.  
+El proyecto está organizado de manera modular con componentes, hooks y contexto global para facilitar escalabilidad y mantenibilidad.
 
+---
 
-Changes 
+## Tecnologías principales
 
-**Use your preferred IDE**
+- **React.js** – Librería para construir interfaces de usuario reactivas.
+- **JavaScript (ES6+)** – Lenguaje principal del proyecto.
+- **CRACO** – Configuración de React sin eject.
+- **Tailwind CSS** – Framework CSS utilitario para estilos rápidos y consistentes.
+- **PostCSS** – Procesamiento y optimización de CSS.
+- **Git** – Control de versiones.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Instalación
 
-Follow these steps:
+Clona el repositorio:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+git clone https://github.com/No-Country-simulation/EleVideo.git
+cd Frontend
 ```
 
-**Edit a file directly in GitHub**
+##Instala las dependencias:
+```bash
+npm install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+##Scripts disponibles
+Levantar servidor de desarrollo:
+```bash
+npm start
+```
 
-**Use GitHub Codespaces**
+Construir la aplicación para producción:
+```bash
+npm run build
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+##Estructura de carpetas
+```
+Frontend/
+│
+├─ public/                 # Archivos estáticos (HTML, imágenes, favicon)
+├─ src/
+│  ├─ api/                 # Llamadas a servicios externos
+│  ├─ components/          # Componentes reutilizables
+│  ├─ context/             # Contextos de React para estado global
+│  ├─ hooks/               # Custom hooks
+│  ├─ lib/                 # Librerías internas o utilidades
+│  ├─ pages/               # Páginas principales de la aplicación
+│  ├─ App.js               # Componente principal
+│  └─ index.js             # Punto de entrada de React
+├─ tailwind.config.js      # Configuración de Tailwind
+├─ postcss.config.js       # Configuración de PostCSS
+├─ craco.config.js         # Configuración de CRACO
+├─ package.json            # Dependencias y scripts
+└─ package-lock.json       # Control de versiones de dependencias
+```
 
-## What technologies are used for this project?
+## Licencia
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open https://pro556.netlify.app/editor and click on Share -> Publish.
-
-## Can I connect a custom domain to my project?
-
-Yes, you can!
-
-To connect a
+Este proyecto se encuentra bajo la licencia **MIT**.

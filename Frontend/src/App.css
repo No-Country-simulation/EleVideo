@@ -1,42 +1,283 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* Animated gradient background */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.animated-gradient {
+  background: linear-gradient(-45deg, #6366f1, #8b5cf6, #a855f7, #3b82f6);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Glassmorphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.dark .glass {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.card {
-  padding: 2em;
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
-.read-the-docs {
-  color: #888;
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Card hover effects - FIXED z-index */
+.card-3d {
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  position: relative;
+  z-index: 1;
+}
+
+.card-3d:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+.dark .card-3d:hover {
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+}
+
+/* Video card specific */
+.video-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.video-card:hover::before {
+  left: 100%;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Stats card - FIXED styling */
+.stat-card {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  position: relative;
+  z-index: 0;
+}
+
+.stat-card:hover {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.12));
+  border-color: rgba(99, 102, 241, 0.25);
+}
+
+.dark .stat-card {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+
+.dark .stat-card:hover {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
+/* Video player styling */
+video {
+  border-radius: 12px;
+}
+
+video::-webkit-media-controls-panel {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6366f1, #8b5cf6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #4f46e5, #7c3aed);
+}
+
+/* Selection */
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+  color: inherit;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 2px;
+}
+
+/* Smooth transitions - excluding transforms */
+* {
+  transition-property: color, background-color, border-color, box-shadow, opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Empty state background */
+.empty-state-bg {
+  background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+}
+
+.dark .empty-state-bg {
+  background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+}
+
+/* Status processing animation */
+.status-processing::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6366f1;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+  50% { opacity: 0.5; transform: translateY(-50%) scale(1.2); }
+}
+
+/* Platform colors */
+.platform-tiktok { color: #ff0050; }
+.platform-instagram { color: #e1306c; }
+.platform-youtube { color: #ff0000; }
+
+/* Button glow effect */
+.btn-glow {
+  position: relative;
+}
+
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #6366f1, #8b5cf6, #a855f7, #6366f1);
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.btn-glow:hover::after {
+  opacity: 0.5;
+  animation: gradient-shift 3s linear infinite;
+}
+
+/* Improved dark mode card backgrounds */
+.dark .bg-card\/50 {
+  background-color: rgba(30, 41, 59, 0.5);
+}
+
+.dark .bg-card\/80 {
+  background-color: rgba(30, 41, 59, 0.8);
+}
+
+.dark .bg-background\/50 {
+  background-color: rgba(15, 23, 42, 0.5);
+}
+
+.dark .bg-background\/80 {
+  background-color: rgba(15, 23, 42, 0.8);
+}
+
+/* Form inputs in dark mode */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: rgba(30, 41, 59, 0.5);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+/* Improved muted text in dark mode */
+.dark .text-muted-foreground {
+  color: rgba(148, 163, 184, 0.9);
+}
+
+/* Card borders in dark mode */
+.dark .border-border\/50 {
+  border-color: rgba(99, 102, 241, 0.15);
+}
+
+/* Hover states in dark mode */
+.dark .hover\:border-purple-500\/50:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+/* Badge improvements for dark mode */
+.dark .bg-green-500\/10 {
+  background-color: rgba(34, 197, 94, 0.15);
+}
+
+.dark .bg-blue-500\/10 {
+  background-color: rgba(59, 130, 246, 0.15);
+}
+
+.dark .bg-purple-500\/10 {
+  background-color: rgba(168, 85, 247, 0.15);
+}
+
+.dark .bg-red-500\/10 {
+  background-color: rgba(239, 68, 68, 0.15);
+}
+
+.dark .bg-yellow-500\/10 {
+  background-color: rgba(234, 179, 8, 0.15);
 }
