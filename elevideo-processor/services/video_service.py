@@ -128,14 +128,17 @@ class VideoProcessingService:
                 local_output_path, job_id, request.platform.value, request.processing_mode,
             )
 
+            output_duration = self._get_duration(local_output_path)
+
             _cleanup()
 
             total_time = time.time() - t0
             metrics.update({
-                "processing_total_time": total_time,
-                "thumbnail_url":         thumbnail_url,
-                "preview_url":           preview_url,
-                "processing_mode":       request.processing_mode.value,
+                "processing_total_time":   total_time,
+                "thumbnail_url":           thumbnail_url,
+                "preview_url":             preview_url,
+                "processing_mode":         request.processing_mode.value,
+                "output_duration_seconds": output_duration,
             })
 
             if self.hw_encoder != "libx264":
@@ -165,6 +168,19 @@ class VideoProcessingService:
             try: _cleanup()
             except Exception: pass
             raise VideoProcessingError(error_info["user_message"]) from e
+
+    def _get_duration(self, path: str) -> Optional[float]:
+        """Lee la duración del video de salida con ffprobe. Retorna None si falla."""
+        import subprocess, json
+        try:
+            result = subprocess.run(
+                ["ffprobe", "-v", "quiet", "-print_format", "json", "-show_format", path],
+                capture_output=True, text=True, timeout=10,
+            )
+            return float(json.loads(result.stdout)["format"]["duration"])
+        except Exception as e:
+            logger.warning("No se pudo obtener duración del output | path=%s | %s", path, e)
+            return None
 
     def _generate_previews(
         self,

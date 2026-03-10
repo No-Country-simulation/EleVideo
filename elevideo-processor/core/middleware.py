@@ -34,6 +34,9 @@ class ServiceKeyMiddleware(BaseHTTPMiddleware):
 
         incoming = request.headers.get(_SERVICE_KEY_HEADER, "")
 
+        logger.warning("X-Service-Key recibido: '%s' | esperado: '%s'",
+                       incoming[:8] + "...", _SERVICE_API_KEY[:8] + "...")
+
         if not incoming or not secrets.compare_digest(incoming, _SERVICE_API_KEY):
             logger.warning(
                 "Request rechazado: %s inválido o ausente | path=%s | method=%s",
@@ -58,3 +61,5 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         response.headers.pop("server", None)
 
         return response
+
+

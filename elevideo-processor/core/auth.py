@@ -18,7 +18,7 @@ Variables de entorno requeridas:
 import base64
 import logging
 import os
-from datetime import datetime, timezone
+from datetime import timedelta, datetime, timezone
 from typing import Optional
 
 import jwt
@@ -89,14 +89,19 @@ async def require_service_token(
             algorithms=[_ALGORITHM],
             audience=_EXPECTED_AUDIENCE,
             options={"verify_exp": True, "verify_iat": True, "require": _REQUIRED_CLAIMS},
+            leeway=timedelta(seconds=30),
         )
-    except jwt.ExpiredSignatureError:
+    except jwt.ExpiredSignatureError as e:
+        logger.warning("[AUTH] ExpiredSignatureError: %s", e)
         raise _unauthorized("Token expirado.")
-    except jwt.InvalidAudienceError:
+    except jwt.InvalidAudienceError as e:
+        logger.warning("[AUTH] InvalidAudienceError: %s", e)
         raise _unauthorized("Token no autorizado.")
-    except jwt.MissingRequiredClaimError:
+    except jwt.MissingRequiredClaimError as e:
+        logger.warning("[AUTH] MissingRequiredClaimError: %s", e)
         raise _unauthorized("Token inválido.")
-    except jwt.InvalidTokenError:
+    except jwt.InvalidTokenError as e:
+        logger.warning("[AUTH] InvalidTokenError: %s", e)
         raise _unauthorized("Token inválido.")
 
     iat = payload.get("iat")
