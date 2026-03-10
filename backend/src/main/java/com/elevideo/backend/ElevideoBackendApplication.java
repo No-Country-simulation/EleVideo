@@ -1,6 +1,6 @@
 package com.elevideo.backend;
 
-import com.elevideo.backend.config.JwtExpirationProperties;
+import com.elevideo.backend.shared.config.JwtExpirationProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
